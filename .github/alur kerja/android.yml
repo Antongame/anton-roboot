@@ -1,0 +1,26 @@
+name: Android CI
+
+on:
+  push:EAAhQbrMpElIBAEUl36sFbmZC0ISHumwDOPK7LIkks6zlvVlHwcK6wViQ8s6AhYH2qNSG1I59oHY3SeJydK2pNZBtZBnxV5RA8GTSOMv1GjNQzNwrPF1SCtx3ZCZB7X7iL7SMAow1pY9gt95bs8eFnB1XlQrvm8R6TfVYuTEDBmG707hHZCMByRvOiYKKAZBTbsZD
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: set up JDK 11
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+        cache: gradle
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+    - name: Build with Gradle
+      run: ./gradlew build
